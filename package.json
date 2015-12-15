@@ -1,0 +1,33 @@
+{
+  "name": "Oceanland",
+  "version": "0.0.0",
+  "description": "WDI Project 4. Marine animal CRUD app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Rufasa85/Oceanland.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Rufasa85/Oceanland/issues"
+  },
+  "dependencies": {
+    "mongoose": "~4.3.1",
+    "browserify": "^12.0.1",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "reactify": "^1.1.1",
+    "request": "^2.67.0",
+    "vinyl-source-stream": "^1.1.0",
+    "body-parser": "~1.14.1",
+    "jsonwebtoken": "~5.4.1",
+    "express-jwt": "~3.3.0",
+    "bcrypt": "~0.8.5"
+  }
+}
