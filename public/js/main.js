@@ -124,9 +124,8 @@ var ShowFish = require('./ShowFish');
 
 var MyApp = React.createClass({displayName: "MyApp",
 	getInitialState:function() {
-		return {content:React.createElement(Splash, null), fishName:'Steve'}
+		return {content:React.createElement(Splash, null), fishName:'Steve', fishes:[]}
 	},
-	fishes:[{name:'seahorse'},{name:'Joe'}],
 	//setting click listeners for navbar
 	splashClick:function() {
 		this.setState({content:React.createElement(Splash, null)})
@@ -134,11 +133,21 @@ var MyApp = React.createClass({displayName: "MyApp",
 	aboutClick:function() {
 		this.setState({content:React.createElement(About, null)})
 	},
+	//should get all the fish
 	allFishClick: function() {
-		this.setState({content:React.createElement(FishList, {fishes: this.fishes, fishData: this.getFishData})})
+		var self = this;
+		$.ajax({
+			type: "GET",
+			url: 'http://localhost:3001/api/fish', 
+			success: function(data){
+				self.state.fishes = data;
+				self.setState({fishes:data, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData})})
+			}
+		})
 	},
+	//should get user created fish, allow for edit and delete, for later
 	myFishClick:function() {
-		this.setState({content:React.createElement(FishList, {fishes: this.fishes, fishData: this.getFishData})})
+		this.setState({content:React.createElement(FishList, {fishes: this.state.fishes, fishData: this.getFishData})})
 	},
 	newFishClick:function() {
 		this.setState({content:React.createElement(NewFish, null)})
