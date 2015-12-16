@@ -15,6 +15,9 @@ var Fish = React.createClass({
 			}
 		})
 	},
+	editBtnClick:function(){
+		this.props.editBtnCallback(this.props.fish);
+	},
 	render: function() {
 		var edibility = 'no';
 		if (this.props.fish.edible){
@@ -26,7 +29,7 @@ var Fish = React.createClass({
 					<h1 onClick={this.settingFishData}>{this.props.fish.name}</h1>
 					<p>can i eat it? {edibility}</p>
 					<img src={this.props.fish.picture} />
-					<button type="button" className="btn btn-info">Edit</button>
+					<button type="button" className="btn btn-info" onClick={this.editBtnClick}>Edit</button>
 					<button type="button" className="btn btn-danger" onClick={this.deleteBtnClick}>Delete</button>
 				</div>
 			)

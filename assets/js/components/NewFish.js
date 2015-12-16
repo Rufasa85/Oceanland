@@ -1,7 +1,7 @@
 var React = require('react');
 var NewFish = React.createClass({
 	getInitialState: function(){
-		return{fishName:'rachel', fishPicture:'joe@joe.joe', edible:true}
+		return{fishName:'', fishPicture:'', edible:true}
 	},
 	createFish: function(e) {
 		var self = this;

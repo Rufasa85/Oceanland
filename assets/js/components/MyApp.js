@@ -8,6 +8,7 @@ var Login = require('./Login');
 var SignUp = require('./SignUp');
 var NewFish = require('./NewFish');
 var ShowFish = require('./ShowFish');
+var EditFish = require('./EditFish');
 
 var MyApp = React.createClass({
 	getInitialState:function() {
@@ -48,7 +49,7 @@ var MyApp = React.createClass({
 						}
 					});
 					self.state.fishes = myFishes;
-					self.setState({fishes:self.state.fishes, content:<FishList fishes={self.state.fishes} fishData={self.getFishData} canEdit='true' deleteBtnCallback={self.deleteBtnCallback} token={self.state.token}/>});
+					self.setState({fishes:self.state.fishes, content:<FishList fishes={self.state.fishes} fishData={self.getFishData} canEdit='true' deleteBtnCallback={self.deleteBtnCallback} editBtnCallback={self.editBtnCallback} token={self.state.token}/>});
 				}
 			})
 		}
@@ -62,6 +63,9 @@ var MyApp = React.createClass({
 		this.setState({message:this.state.message});
 		this.myFishClick();
 	},
+	editBtnCallback:function(fish){
+		this.editFishClick(fish);
+	},
 	newFishClick:function() {
 		if (this.state.loggedIn){
 			this.setState({content:<NewFish userId={this.state.userId} token={this.state.token} redirect={this.allFishClick}/>});	
@@ -71,6 +75,14 @@ var MyApp = React.createClass({
 			this.loginClick();
 		}
 	}, 
+	editFishClick:function(fish) {
+		this.setState({content:<EditFish fish={fish} editFishCallback={this.editFishCallback} token={this.state.token}/>})
+	},
+	editFishCallback:function(){
+		this.state.message = 'Edit successful!';
+		this.setState({message:this.state.message});
+		this.myFishClick();
+	},
 	loginClick:function() {
 		this.setState({content:<Login authenticate={this.authenticate}/>})
 	},
