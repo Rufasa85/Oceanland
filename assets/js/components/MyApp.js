@@ -37,7 +37,7 @@ var MyApp = React.createClass({
 		this.setState({content:<FishList fishes={this.state.fishes} fishData={this.getFishData}/>})
 	},
 	newFishClick:function() {
-		this.setState({content:<NewFish/>})
+		this.setState({content:<NewFish redirect={this.allFishClick}/>});	
 	}, 
 	loginClick:function() {
 		this.setState({content:<Login/>})

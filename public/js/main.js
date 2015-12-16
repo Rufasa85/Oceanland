@@ -150,7 +150,7 @@ var MyApp = React.createClass({displayName: "MyApp",
 		this.setState({content:React.createElement(FishList, {fishes: this.state.fishes, fishData: this.getFishData})})
 	},
 	newFishClick:function() {
-		this.setState({content:React.createElement(NewFish, null)})
+		this.setState({content:React.createElement(NewFish, {redirect: this.allFishClick})});	
 	}, 
 	loginClick:function() {
 		this.setState({content:React.createElement(Login, null)})
@@ -182,10 +182,46 @@ module.exports = MyApp;
 },{"./About":1,"./FishList":3,"./Footer":4,"./Header":5,"./Login":6,"./NewFish":8,"./ShowFish":9,"./SignUp":10,"./Splash":11,"react":170}],8:[function(require,module,exports){
 var React = require('react');
 var NewFish = React.createClass({displayName: "NewFish",
+	getInitialState: function(){
+		return{fishName:'rachel', fishPicture:'joe@joe.joe', edible:false}
+	},
+	createFish: function(e) {
+		var self = this;
+		e.preventDefault();
+		$.ajax({
+			url: 'http://localhost:3001/api/fish',
+			type: 'POST',
+			data: {name:self.state.fishName, picture:self.state.fishPicture, edible:self.state.edible},
+			success: function (data) {
+			}
+		})
+		this.props.redirect();
+	},
+	updateName: function(e) {
+		this.state.fishName = e.target.value;
+		this.setState({fishName:this.state.fishName})
+	},
+	updatePicture:function(e) {
+		this.state.fishPicture = e.target.value;
+		this.setState({fishPicture:this.state.fishPicture})
+	},
 	render: function() {
 		return ( 
 			React.createElement("div", null, 
-				React.createElement("h1", null, "This will be the NewFish page")
+				React.createElement("form", {onSubmit: this.createFish}, 
+					React.createElement("legend", null, "Form title"), 
+				
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "name"}, "name"), 
+						React.createElement("input", {type: "text", className: "form-control", id: "name", name: "name", onChange: this.updateName, placeholder: "Input field"})
+					), 
+
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "picture"}, "picture URL"), 
+						React.createElement("input", {type: "text", className: "form-control", id: "picture", name: "picture", onChange: this.updatePicture, placeholder: "Input field"})
+					), 
+					React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Create Fish!")
+				)
 			)
 		)
 	}
