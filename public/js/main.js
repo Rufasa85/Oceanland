@@ -208,7 +208,7 @@ var MyApp = React.createClass({displayName: "MyApp",
 						}
 					});
 					self.state.fishes = myFishes;
-					self.setState({fishes:self.state.fishes, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData}), message:''});
+					self.setState({fishes:self.state.fishes, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData})});
 				}
 			})
 		}
@@ -254,7 +254,12 @@ var MyApp = React.createClass({displayName: "MyApp",
 		this.setState({message:this.state.message, content:React.createElement(Splash, null), userName:this.state.userName, token:this.state.token, userId:this.state.userId, loggedIn:this.state.loggedIn})
 	},
 	signUpClick:function() {
-		this.setState({content:React.createElement(SignUp, null)})
+		this.setState({content:React.createElement(SignUp, {callback: this.signUpCallback})})
+	},
+	signUpCallback:function() {
+		this.state.message = 'Great! now login!';
+		this.setState({message:this.state.message});
+		this.loginClick();
 	},
 	getFishData:function(fish){
 		this.state.fishData = fish;
@@ -348,10 +353,55 @@ module.exports = ShowFish;
 },{"react":170}],10:[function(require,module,exports){
 var React = require('react');
 var SignUp = React.createClass({displayName: "SignUp",
+		getInitialState:function(){
+		return {email:'', password:'', username:''}
+	},
+	afterSignup:function(e){
+		var self = this;
+		e.preventDefault();
+		$.ajax({
+			url: 'http://localhost:3001/api/users',
+			type: 'POST',
+			data: {email:self.state.email, password:self.state.password, username:self.state.username},
+			success: function (data) {
+				console.log(data);
+				self.props.callback();
+			}
+		})
+	},
+	updateEmail:function(e) {
+		this.state.email = e.target.value;
+		this.setState({email:this.state.email})
+	},
+	updatePassword:function(e) {
+		this.state.password = e.target.value;
+		this.setState({password:this.state.password});
+	},
+	updateUsername:function(e) {
+		this.state.username = e.target.value;
+		this.setState({username:this.state.username});
+	},
 	render: function() {
 		return ( 
 			React.createElement("div", null, 
-				React.createElement("h1", null, "This will be the Signup page")
+				React.createElement("form", {onSubmit: this.afterSignup}, 
+					React.createElement("legend", null, "Form title"), 
+				
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "email"}, "email"), 
+						React.createElement("input", {type: "text", className: "form-control", id: "email", name: "email", placeholder: "Input field", onChange: this.updateEmail})
+					), 
+
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "password"}, "password"), 
+						React.createElement("input", {type: "password", className: "form-control", id: "password", name: "password", placeholder: "Input field", onChange: this.updatePassword})
+					), 
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "username"}, "username"), 
+						React.createElement("input", {type: "username", className: "form-control", id: "username", name: "username", placeholder: "Input field", onChange: this.updateUsername})
+					), 
+					React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Sign Up!")
+				)
 			)
 		)
 	}
