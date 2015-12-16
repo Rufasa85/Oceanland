@@ -18,18 +18,43 @@ var Fish = React.createClass({displayName: "Fish",
 	settingFishData:function() {
 		this.props.fishData(this.props.fish);
 	},
+	deleteBtnClick:function() {
+		var self = this;
+		console.log(self.props.fish);
+		$.ajax({
+			url: 'http://localhost:3001/api/fish/' + self.props.fish._id,
+			headers: {Authorization: 'Bearer ' + self.props.token},
+			type: 'DELETE',
+			success:function() {
+				self.props.deleteBtnCallback();
+			}
+		})
+	},
 	render: function() {
 		var edibility = 'no';
 		if (this.props.fish.edible){
 			edibility = 'yes';
 		};
-		return ( 
-			React.createElement("div", {className: "well", onClick: this.settingFishData}, 
-				React.createElement("h1", null, this.props.fish.name), 
-				React.createElement("p", null, "can i eat it? ", edibility), 
-				React.createElement("img", {src: this.props.fish.picture})
+		if (this.props.canEdit) {
+			return ( 
+				React.createElement("div", {className: "well"}, 
+					React.createElement("h1", {onClick: this.settingFishData}, this.props.fish.name), 
+					React.createElement("p", null, "can i eat it? ", edibility), 
+					React.createElement("img", {src: this.props.fish.picture}), 
+					React.createElement("button", {type: "button", className: "btn btn-info"}, "Edit"), 
+					React.createElement("button", {type: "button", className: "btn btn-danger", onClick: this.deleteBtnClick}, "Delete")
+				)
 			)
-		)
+		}
+		else {
+			return ( 
+				React.createElement("div", {className: "well", onClick: this.settingFishData}, 
+					React.createElement("h1", null, this.props.fish.name), 
+					React.createElement("p", null, "can i eat it? ", edibility), 
+					React.createElement("img", {src: this.props.fish.picture})
+				)
+			)
+		}
 	}
 });
 
@@ -41,9 +66,18 @@ var Fish = require('./Fish');
 var FishList = React.createClass({displayName: "FishList",
 	render: function() {
 		var self = this;
-		var fishes = this.props.fishes.map(function(item, idx){
-			return React.createElement(Fish, {fish: item, key: idx, fishData: self.props.fishData})
-		})
+		var fishes;
+		if (this.props.canEdit) {
+			console.log('From fishList:'+this.props.canEdit)
+			fishes = this.props.fishes.map(function(item, idx){
+				return React.createElement(Fish, {fish: item, key: idx, fishData: self.props.fishData, canEdit: "true", deleteBtnCallback: self.props.deleteBtnCallback, token: self.props.token})
+			})
+		}
+		else {
+			fishes = this.props.fishes.map(function(item, idx){
+				return React.createElement(Fish, {fish: item, key: idx, fishData: self.props.fishData})
+			})
+		}
 		return ( 
 			React.createElement("div", null, 
 				fishes
@@ -208,7 +242,7 @@ var MyApp = React.createClass({displayName: "MyApp",
 						}
 					});
 					self.state.fishes = myFishes;
-					self.setState({fishes:self.state.fishes, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData})});
+					self.setState({fishes:self.state.fishes, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData, canEdit: "true", deleteBtnCallback: self.deleteBtnCallback, token: self.state.token})});
 				}
 			})
 		}
@@ -216,6 +250,11 @@ var MyApp = React.createClass({displayName: "MyApp",
 			this.setState({message:'Please log in to continue'});
 			this.loginClick();
 		}
+	},
+	deleteBtnCallback:function() {
+		this.state.message= 'Deleted successfully!';
+		this.setState({message:this.state.message});
+		this.myFishClick();
 	},
 	newFishClick:function() {
 		if (this.state.loggedIn){

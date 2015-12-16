@@ -3,9 +3,18 @@ var Fish = require('./Fish');
 var FishList = React.createClass({
 	render: function() {
 		var self = this;
-		var fishes = this.props.fishes.map(function(item, idx){
-			return <Fish fish={item} key={idx} fishData={self.props.fishData}/>
-		})
+		var fishes;
+		if (this.props.canEdit) {
+			console.log('From fishList:'+this.props.canEdit)
+			fishes = this.props.fishes.map(function(item, idx){
+				return <Fish fish={item} key={idx} fishData={self.props.fishData} canEdit="true" deleteBtnCallback={self.props.deleteBtnCallback} token={self.props.token}/>
+			})
+		}
+		else {
+			fishes = this.props.fishes.map(function(item, idx){
+				return <Fish fish={item} key={idx} fishData={self.props.fishData}/>
+			})
+		}
 		return ( 
 			<div>
 				{fishes}
