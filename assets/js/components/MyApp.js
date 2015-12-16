@@ -94,12 +94,17 @@ var MyApp = React.createClass({
 		this.setState({message:this.state.message, content:<Splash/>, userName:this.state.userName, token:this.state.token, userId:this.state.userId, loggedIn:this.state.loggedIn})
 	},
 	signUpClick:function() {
-		this.setState({content:<SignUp callback={this.signUpCallback}/>})
+		this.setState({content:<SignUp callback={this.signUpCallback} error={this.signUpError}/>})
 	},
 	signUpCallback:function() {
 		this.state.message = 'Great! now login!';
 		this.setState({message:this.state.message});
 		this.loginClick();
+	},
+	signUpError:function() {
+		this.state.message = 'Signup error. Please try again.'
+		this.setState({message:this.state.message});
+		this.signUpClick();
 	},
 	getFishData:function(fish){
 		this.state.fishData = fish;

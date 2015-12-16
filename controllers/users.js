@@ -10,10 +10,18 @@ router.route('/')
     });
   })
   .post(function(req, res) {
-    User.create(req.body, function(err, user) {
-      if (err) return res.status(500).send(err);
-      res.send(user);
-    });
+    User.find({email:req.body.email}, function(err, users) {
+      console.log(users)
+      if (users.length >0){
+        res.send({error:'User already exists!'});
+      }
+      else{
+        User.create(req.body, function(err, user) {
+          if (err) return res.status(500).send(err);
+          res.send(user);
+        });
+      }
+    })
   });
 
 router.get('/:id', function(req, res) {
