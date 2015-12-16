@@ -4,6 +4,7 @@ var ShowFish = React.createClass({
 		return ( 
 			<div >
 				<h1>{this.props.fishData.name} page</h1>
+				<img src={this.props.fishData.picture}/>
 				<p>edible? {this.props.fishData.edible + ''}</p>
 			</div>
 		)

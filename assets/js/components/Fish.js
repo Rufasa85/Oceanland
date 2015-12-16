@@ -4,10 +4,15 @@ var Fish = React.createClass({
 		this.props.fishData(this.props.fish);
 	},
 	render: function() {
+		var edibility = 'no';
+		if (this.props.fish.edible){
+			edibility = 'yes';
+		};
 		return ( 
 			<div className='well' onClick={this.settingFishData}>
 				<h1>{this.props.fish.name}</h1>
-				<p>can i eat it? {this.props.fish.edible + ''}</p>
+				<p>can i eat it? {edibility}</p>
+				<img src={this.props.fish.picture} />
 			</div>
 		)
 	}

@@ -1,6 +1,9 @@
 var React = require('react');
+
 var Header = React.createClass({
 	render:function() {
+		var loginOrOut = '';
+
 		return(
 			<nav className="navbar navbar-default" role="navigation">
 				<div className="navbar-header">
@@ -20,6 +23,7 @@ var Header = React.createClass({
 						<li><a href="#" onClick={this.props.newFish}>New Fish</a></li>
 					</ul>
 					<ul className="nav navbar-nav navbar-right">
+						<li><a href="#" onClick={this.props.logout}>Logout</a></li>
 						<li><a href="#" onClick={this.props.login}>Login</a></li>
 						<li><a href="#" onClick={this.props.signUp}>Signup</a></li>
 					</ul>
