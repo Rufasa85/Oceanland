@@ -48,7 +48,7 @@ var MyApp = React.createClass({
 						}
 					});
 					self.state.fishes = myFishes;
-					self.setState({fishes:self.state.fishes, content:<FishList fishes={self.state.fishes} fishData={self.getFishData}/>});
+					self.setState({fishes:self.state.fishes, content:<FishList fishes={self.state.fishes} fishData={self.getFishData} canEdit='true' deleteBtnCallback={self.deleteBtnCallback} token={self.state.token}/>});
 				}
 			})
 		}
@@ -56,6 +56,11 @@ var MyApp = React.createClass({
 			this.setState({message:'Please log in to continue'});
 			this.loginClick();
 		}
+	},
+	deleteBtnCallback:function() {
+		this.state.message= 'Deleted successfully!';
+		this.setState({message:this.state.message});
+		this.myFishClick();
 	},
 	newFishClick:function() {
 		if (this.state.loggedIn){
