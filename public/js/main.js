@@ -22,7 +22,8 @@ var Fish = React.createClass({displayName: "Fish",
 		return ( 
 			React.createElement("div", {className: "well", onClick: this.settingFishData}, 
 				React.createElement("h1", null, this.props.fish.name), 
-				React.createElement("p", null, "can i eat it? ", this.props.fish.edible + '')
+				React.createElement("p", null, "can i eat it? ", this.props.fish.edible + ''), 
+				React.createElement("img", {src: this.props.fish.picture})
 			)
 		)
 	}
@@ -237,6 +238,7 @@ var ShowFish = React.createClass({displayName: "ShowFish",
 		return ( 
 			React.createElement("div", null, 
 				React.createElement("h1", null, this.props.fishData.name, " page"), 
+				React.createElement("img", {src: this.props.fishData.picture}), 
 				React.createElement("p", null, "edible? ", this.props.fishData.edible + '')
 			)
 		)
