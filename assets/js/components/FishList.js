@@ -7,7 +7,7 @@ var FishList = React.createClass({
 		if (this.props.canEdit) {
 			console.log('From fishList:'+this.props.canEdit)
 			fishes = this.props.fishes.map(function(item, idx){
-				return <Fish fish={item} key={idx} fishData={self.props.fishData} canEdit="true" deleteBtnCallback={self.props.deleteBtnCallback} token={self.props.token}/>
+				return <Fish fish={item} key={idx} fishData={self.props.fishData} canEdit="true" deleteBtnCallback={self.props.deleteBtnCallback} editBtnCallback={self.props.editBtnCallback} token={self.props.token}/>
 			})
 		}
 		else {
