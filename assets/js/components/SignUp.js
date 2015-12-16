@@ -12,7 +12,12 @@ var SignUp = React.createClass({
 			data: {email:self.state.email, password:self.state.password, username:self.state.username},
 			success: function (data) {
 				console.log(data);
-				self.props.callback();
+				if (data.error) {
+					self.props.error();
+				}
+				else{
+					self.props.callback();
+				}
 			}
 		})
 	},

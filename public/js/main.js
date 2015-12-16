@@ -254,12 +254,17 @@ var MyApp = React.createClass({displayName: "MyApp",
 		this.setState({message:this.state.message, content:React.createElement(Splash, null), userName:this.state.userName, token:this.state.token, userId:this.state.userId, loggedIn:this.state.loggedIn})
 	},
 	signUpClick:function() {
-		this.setState({content:React.createElement(SignUp, {callback: this.signUpCallback})})
+		this.setState({content:React.createElement(SignUp, {callback: this.signUpCallback, error: this.signUpError})})
 	},
 	signUpCallback:function() {
 		this.state.message = 'Great! now login!';
 		this.setState({message:this.state.message});
 		this.loginClick();
+	},
+	signUpError:function() {
+		this.state.message = 'Signup error. Please try again.'
+		this.setState({message:this.state.message});
+		this.signUpClick();
 	},
 	getFishData:function(fish){
 		this.state.fishData = fish;
@@ -365,7 +370,12 @@ var SignUp = React.createClass({displayName: "SignUp",
 			data: {email:self.state.email, password:self.state.password, username:self.state.username},
 			success: function (data) {
 				console.log(data);
-				self.props.callback();
+				if (data.error) {
+					self.props.error();
+				}
+				else{
+					self.props.callback();
+				}
 			}
 		})
 	},

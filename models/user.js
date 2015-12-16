@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt');
+var validate = require('mongoose-validator');
+
+var emailValidator = validate({validator: 'isEmail'});
 
 var UserSchema = mongoose.Schema({
   username:{ type: String, required: true},
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true, validate:emailValidator },
   password: { type: String, required: true, minlength:8}
 });
 
