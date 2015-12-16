@@ -16,12 +16,13 @@ module.exports = About;
 var React = require('react');
 var Fish = React.createClass({displayName: "Fish",
 	settingFishData:function() {
-		this.props.fishData(this.props.name);
+		this.props.fishData(this.props.fish);
 	},
 	render: function() {
 		return ( 
 			React.createElement("div", {className: "well", onClick: this.settingFishData}, 
-				React.createElement("h1", null, this.props.name)
+				React.createElement("h1", null, this.props.fish.name), 
+				React.createElement("p", null, "can i eat it? ", this.props.fish.edible + '')
 			)
 		)
 	}
@@ -36,7 +37,7 @@ var FishList = React.createClass({displayName: "FishList",
 	render: function() {
 		var self = this;
 		var fishes = this.props.fishes.map(function(item, idx){
-			return React.createElement(Fish, {name: item.name, key: idx, fishData: self.props.fishData})
+			return React.createElement(Fish, {fish: item, key: idx, fishData: self.props.fishData})
 		})
 		return ( 
 			React.createElement("div", null, 
@@ -124,7 +125,7 @@ var ShowFish = require('./ShowFish');
 
 var MyApp = React.createClass({displayName: "MyApp",
 	getInitialState:function() {
-		return {content:React.createElement(Splash, null), fishName:'Steve', fishes:[]}
+		return {content:React.createElement(Splash, null), fishData:{}, fishes:[]}
 	},
 	//setting click listeners for navbar
 	splashClick:function() {
@@ -158,13 +159,13 @@ var MyApp = React.createClass({displayName: "MyApp",
 	signUpClick:function() {
 		this.setState({content:React.createElement(SignUp, null)})
 	},
-	getFishData:function(name){
-		this.state.fishName = name;
-		this.setState({fishName:name});
+	getFishData:function(fish){
+		this.state.fishData = fish;
+		this.setState({fishData:fish});
 		this.showFishClick();
 	},
 	showFishClick:function() {
-		this.setState({content:React.createElement(ShowFish, {fishName: this.state.fishName})})
+		this.setState({content:React.createElement(ShowFish, {fishData: this.state.fishData})})
 	},
 	render: function() {
 		return (
@@ -235,7 +236,8 @@ var ShowFish = React.createClass({displayName: "ShowFish",
 	render: function() {
 		return ( 
 			React.createElement("div", null, 
-				React.createElement("h1", null, this.props.fishName, " page")
+				React.createElement("h1", null, this.props.fishData.name, " page"), 
+				React.createElement("p", null, "edible? ", this.props.fishData.edible + '')
 			)
 		)
 	}

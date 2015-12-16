@@ -9,7 +9,6 @@ var moongoose = require('mongoose');
 var User = require('./models/user');
 var Fish = require('./models/fish')
 
-var secret = 'secretssssssssssecretsssssssss'
 
 moongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/oceanland');
 
@@ -17,8 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// app.use('/api/fish', expressJWT({secret: secret}));
-// app.use('/api/users', expressJWT({secret: secret})
+// app.use('/api/fish', expressJWT({secret: process.env.SECRET}));
+// app.use('/api/users', expressJWT({secret: process.env.SECRET})
 // .unless({path: ['/api/users'], method: 'post'}));
 
 app.get('/api/haha', function(req, res) {
@@ -41,4 +40,4 @@ app.post('/api/auth', function(req, res) {
 app.use('/api/users', require('./controllers/users'));
 app.use('/api/fish', require('./controllers/fishes'))
 
-app.listen(3001)
+app.listen(process.env.PORT)
