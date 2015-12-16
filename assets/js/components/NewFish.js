@@ -1,15 +1,16 @@
 var React = require('react');
 var NewFish = React.createClass({
 	getInitialState: function(){
-		return{fishName:'rachel', fishPicture:'joe@joe.joe', edible:false}
+		return{fishName:'rachel', fishPicture:'joe@joe.joe', edible:true}
 	},
 	createFish: function(e) {
 		var self = this;
 		e.preventDefault();
 		$.ajax({
 			url: 'http://localhost:3001/api/fish',
+			headers: {Authorization: 'Bearer ' + self.props.token},
 			type: 'POST',
-			data: {name:self.state.fishName, picture:self.state.fishPicture, edible:self.state.edible},
+			data: {name:self.state.fishName, picture:self.state.fishPicture, creator:self.props.userId, edible:self.state.edible},
 			success: function (data) {
 			}
 		})

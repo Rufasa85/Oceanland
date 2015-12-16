@@ -19,10 +19,14 @@ var Fish = React.createClass({displayName: "Fish",
 		this.props.fishData(this.props.fish);
 	},
 	render: function() {
+		var edibility = 'no';
+		if (this.props.fish.edible){
+			edibility = 'yes';
+		};
 		return ( 
 			React.createElement("div", {className: "well", onClick: this.settingFishData}, 
 				React.createElement("h1", null, this.props.fish.name), 
-				React.createElement("p", null, "can i eat it? ", this.props.fish.edible + ''), 
+				React.createElement("p", null, "can i eat it? ", edibility), 
 				React.createElement("img", {src: this.props.fish.picture})
 			)
 		)
@@ -66,8 +70,11 @@ module.exports = Footer;
 
 },{"react":170}],5:[function(require,module,exports){
 var React = require('react');
+
 var Header = React.createClass({displayName: "Header",
 	render:function() {
+		var loginOrOut = '';
+
 		return(
 			React.createElement("nav", {className: "navbar navbar-default", role: "navigation"}, 
 				React.createElement("div", {className: "navbar-header"}, 
@@ -87,6 +94,7 @@ var Header = React.createClass({displayName: "Header",
 						React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.props.newFish}, "New Fish"))
 					), 
 					React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
+						React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.props.logout}, "Logout")), 
 						React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.props.login}, "Login")), 
 						React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.props.signUp}, "Signup"))
 					)
@@ -101,10 +109,47 @@ module.exports = Header;
 },{"react":170}],6:[function(require,module,exports){
 var React = require('react');
 var Login = React.createClass({displayName: "Login",
+	getInitialState:function(){
+		return {email:'', password:''}
+	},
+	afterLogin:function(e){
+		var self = this;
+		e.preventDefault();
+		$.ajax({
+			url: 'http://localhost:3001/api/auth',
+			type: 'POST',
+			data: {email:self.state.email, password:self.state.password},
+			success: function (data) {
+				console.log(data);
+				self.props.authenticate(data);
+			}
+		})
+	},
+	updateEmail:function(e) {
+		this.state.email = e.target.value;
+		this.setState({email:this.state.email})
+	},
+	updatePassword:function(e) {
+		this.state.password = e.target.value;
+		this.setState({password:this.state.password});
+	},
 	render: function() {
 		return ( 
 			React.createElement("div", null, 
-				React.createElement("h1", null, "This will be the Login page")
+				React.createElement("form", {onSubmit: this.afterLogin}, 
+					React.createElement("legend", null, "Form title"), 
+				
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "email"}, "email"), 
+						React.createElement("input", {type: "text", className: "form-control", id: "email", name: "email", placeholder: "Input field", onChange: this.updateEmail})
+					), 
+
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "password"}, "password"), 
+						React.createElement("input", {type: "password", className: "form-control", id: "password", name: "password", placeholder: "Input field", onChange: this.updatePassword})
+					), 
+					React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Login!")
+				)
 			)
 		)
 	}
@@ -126,14 +171,14 @@ var ShowFish = require('./ShowFish');
 
 var MyApp = React.createClass({displayName: "MyApp",
 	getInitialState:function() {
-		return {content:React.createElement(Splash, null), fishData:{}, fishes:[]}
+		return {content:React.createElement(Splash, null), fishData:{}, fishes:[], myFishes:[], loggedIn:false}
 	},
 	//setting click listeners for navbar
 	splashClick:function() {
-		this.setState({content:React.createElement(Splash, null)})
+		this.setState({content:React.createElement(Splash, null), message:''})
 	},
 	aboutClick:function() {
-		this.setState({content:React.createElement(About, null)})
+		this.setState({content:React.createElement(About, null), message:''})
 	},
 	//should get all the fish
 	allFishClick: function() {
@@ -143,19 +188,70 @@ var MyApp = React.createClass({displayName: "MyApp",
 			url: 'http://localhost:3001/api/fish', 
 			success: function(data){
 				self.state.fishes = data;
-				self.setState({fishes:data, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData})})
+				self.setState({fishes:data, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData}), message:''})
 			}
 		})
 	},
 	//should get user created fish, allow for edit and delete, for later
 	myFishClick:function() {
-		this.setState({content:React.createElement(FishList, {fishes: this.state.fishes, fishData: this.getFishData})})
+		if (this.state.loggedIn){
+			var self = this;
+			var myFishes = [];
+			$.ajax({
+				type: "GET",
+				url: 'http://localhost:3001/api/fish', 
+				success: function(data){
+					console.log('data', data)
+					data.forEach(function(fish) {
+						if (fish.creator === self.state.userId) {
+							myFishes.push(fish);
+						}
+					});
+					self.state.fishes = myFishes;
+					self.setState({fishes:self.state.fishes, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData}), message:''});
+				}
+			})
+		}
+		else{
+			this.setState({message:'Please log in to continue'});
+			this.loginClick();
+		}
 	},
 	newFishClick:function() {
-		this.setState({content:React.createElement(NewFish, {redirect: this.allFishClick})});	
+		if (this.state.loggedIn){
+			this.setState({content:React.createElement(NewFish, {userId: this.state.userId, token: this.state.token, redirect: this.allFishClick})});	
+		}
+		else{
+			this.setState({message:'Please log in to continue'});
+			this.loginClick();
+		}
 	}, 
 	loginClick:function() {
-		this.setState({content:React.createElement(Login, null)})
+		this.setState({content:React.createElement(Login, {authenticate: this.authenticate})})
+	},
+	authenticate:function(user) {
+		if(user.user) {
+			this.state.loggedIn = true;
+			this.state.token = user.token;
+			this.state.userName = user.user.username;
+			this.state.userId = user.user.id;
+			this.state.message = 'Logged in successfully';
+			this.setState({message:this.state.message, userName:this.state.userName, token:this.state.token, userId:this.state.userId, loggedIn:this.state.loggedIn});
+			this.myFishClick();
+		}
+		else {
+			this.state.message = 'Login falied'
+			this.setState({message:this.state.message})
+			this.loginClick();
+		}
+	},
+	logoutClick:function() {		
+		this.state.loggedIn = false;
+		this.state.token = '';
+		this.state.userName = '';
+		this.state.userId = '';
+		this.state.message = 'Logged out successfully'
+		this.setState({message:this.state.message, content:React.createElement(Splash, null), userName:this.state.userName, token:this.state.token, userId:this.state.userId, loggedIn:this.state.loggedIn})
 	},
 	signUpClick:function() {
 		this.setState({content:React.createElement(SignUp, null)})
@@ -171,7 +267,8 @@ var MyApp = React.createClass({displayName: "MyApp",
 	render: function() {
 		return (
 			React.createElement("div", {className: "container"}, 
-				React.createElement(Header, {about: this.aboutClick, allFish: this.allFishClick, splash: this.splashClick, myFish: this.myFishClick, newFish: this.newFishClick, login: this.loginClick, signUp: this.signUpClick}), 
+				React.createElement(Header, {about: this.aboutClick, allFish: this.allFishClick, splash: this.splashClick, myFish: this.myFishClick, newFish: this.newFishClick, login: this.loginClick, logout: this.logoutClick, signUp: this.signUpClick}), 
+				this.state.message, 
 				this.state.content, 
 				React.createElement(Footer, null)
 			)
@@ -185,15 +282,16 @@ module.exports = MyApp;
 var React = require('react');
 var NewFish = React.createClass({displayName: "NewFish",
 	getInitialState: function(){
-		return{fishName:'rachel', fishPicture:'joe@joe.joe', edible:false}
+		return{fishName:'rachel', fishPicture:'joe@joe.joe', edible:true}
 	},
 	createFish: function(e) {
 		var self = this;
 		e.preventDefault();
 		$.ajax({
 			url: 'http://localhost:3001/api/fish',
+			headers: {Authorization: 'Bearer ' + self.props.token},
 			type: 'POST',
-			data: {name:self.state.fishName, picture:self.state.fishPicture, edible:self.state.edible},
+			data: {name:self.state.fishName, picture:self.state.fishPicture, creator:self.props.userId, edible:self.state.edible},
 			success: function (data) {
 			}
 		})

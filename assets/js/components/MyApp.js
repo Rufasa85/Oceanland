@@ -11,14 +11,14 @@ var ShowFish = require('./ShowFish');
 
 var MyApp = React.createClass({
 	getInitialState:function() {
-		return {content:<Splash/>, fishData:{}, fishes:[]}
+		return {content:<Splash/>, fishData:{}, fishes:[], myFishes:[], loggedIn:false}
 	},
 	//setting click listeners for navbar
 	splashClick:function() {
-		this.setState({content:<Splash/>})
+		this.setState({content:<Splash/>, message:''})
 	},
 	aboutClick:function() {
-		this.setState({content:<About/>})
+		this.setState({content:<About/>, message:''})
 	},
 	//should get all the fish
 	allFishClick: function() {
@@ -28,19 +28,70 @@ var MyApp = React.createClass({
 			url: 'http://localhost:3001/api/fish', 
 			success: function(data){
 				self.state.fishes = data;
-				self.setState({fishes:data, content:<FishList fishes={self.state.fishes} fishData={self.getFishData}/>})
+				self.setState({fishes:data, content:<FishList fishes={self.state.fishes} fishData={self.getFishData}/>, message:''})
 			}
 		})
 	},
 	//should get user created fish, allow for edit and delete, for later
 	myFishClick:function() {
-		this.setState({content:<FishList fishes={this.state.fishes} fishData={this.getFishData}/>})
+		if (this.state.loggedIn){
+			var self = this;
+			var myFishes = [];
+			$.ajax({
+				type: "GET",
+				url: 'http://localhost:3001/api/fish', 
+				success: function(data){
+					console.log('data', data)
+					data.forEach(function(fish) {
+						if (fish.creator === self.state.userId) {
+							myFishes.push(fish);
+						}
+					});
+					self.state.fishes = myFishes;
+					self.setState({fishes:self.state.fishes, content:<FishList fishes={self.state.fishes} fishData={self.getFishData}/>, message:''});
+				}
+			})
+		}
+		else{
+			this.setState({message:'Please log in to continue'});
+			this.loginClick();
+		}
 	},
 	newFishClick:function() {
-		this.setState({content:<NewFish redirect={this.allFishClick}/>});	
+		if (this.state.loggedIn){
+			this.setState({content:<NewFish userId={this.state.userId} token={this.state.token} redirect={this.allFishClick}/>});	
+		}
+		else{
+			this.setState({message:'Please log in to continue'});
+			this.loginClick();
+		}
 	}, 
 	loginClick:function() {
-		this.setState({content:<Login/>})
+		this.setState({content:<Login authenticate={this.authenticate}/>})
+	},
+	authenticate:function(user) {
+		if(user.user) {
+			this.state.loggedIn = true;
+			this.state.token = user.token;
+			this.state.userName = user.user.username;
+			this.state.userId = user.user.id;
+			this.state.message = 'Logged in successfully';
+			this.setState({message:this.state.message, userName:this.state.userName, token:this.state.token, userId:this.state.userId, loggedIn:this.state.loggedIn});
+			this.myFishClick();
+		}
+		else {
+			this.state.message = 'Login falied'
+			this.setState({message:this.state.message})
+			this.loginClick();
+		}
+	},
+	logoutClick:function() {		
+		this.state.loggedIn = false;
+		this.state.token = '';
+		this.state.userName = '';
+		this.state.userId = '';
+		this.state.message = 'Logged out successfully'
+		this.setState({message:this.state.message, content:<Splash/>, userName:this.state.userName, token:this.state.token, userId:this.state.userId, loggedIn:this.state.loggedIn})
 	},
 	signUpClick:function() {
 		this.setState({content:<SignUp/>})
@@ -56,7 +107,8 @@ var MyApp = React.createClass({
 	render: function() {
 		return (
 			<div className='container'>
-				<Header about={this.aboutClick} allFish={this.allFishClick} splash={this.splashClick} myFish={this.myFishClick} newFish={this.newFishClick} login={this.loginClick} signUp={this.signUpClick} />
+				<Header about={this.aboutClick} allFish={this.allFishClick} splash={this.splashClick} myFish={this.myFishClick} newFish={this.newFishClick} login={this.loginClick} logout = {this.logoutClick} signUp={this.signUpClick} />
+				{this.state.message}
 				{this.state.content}
 				<Footer/>
 			</div>
