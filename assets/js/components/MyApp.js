@@ -11,7 +11,7 @@ var ShowFish = require('./ShowFish');
 
 var MyApp = React.createClass({
 	getInitialState:function() {
-		return {content:<Splash/>, fishName:'Steve', fishes:[]}
+		return {content:<Splash/>, fishData:{}, fishes:[]}
 	},
 	//setting click listeners for navbar
 	splashClick:function() {
@@ -37,7 +37,7 @@ var MyApp = React.createClass({
 		this.setState({content:<FishList fishes={this.state.fishes} fishData={this.getFishData}/>})
 	},
 	newFishClick:function() {
-		this.setState({content:<NewFish/>})
+		this.setState({content:<NewFish redirect={this.allFishClick}/>});	
 	}, 
 	loginClick:function() {
 		this.setState({content:<Login/>})
@@ -45,13 +45,13 @@ var MyApp = React.createClass({
 	signUpClick:function() {
 		this.setState({content:<SignUp/>})
 	},
-	getFishData:function(name){
-		this.state.fishName = name;
-		this.setState({fishName:name});
+	getFishData:function(fish){
+		this.state.fishData = fish;
+		this.setState({fishData:fish});
 		this.showFishClick();
 	},
 	showFishClick:function() {
-		this.setState({content:<ShowFish fishName={this.state.fishName}/>})
+		this.setState({content:<ShowFish fishData={this.state.fishData}/>})
 	},
 	render: function() {
 		return (

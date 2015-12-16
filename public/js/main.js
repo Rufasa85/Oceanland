@@ -16,12 +16,13 @@ module.exports = About;
 var React = require('react');
 var Fish = React.createClass({displayName: "Fish",
 	settingFishData:function() {
-		this.props.fishData(this.props.name);
+		this.props.fishData(this.props.fish);
 	},
 	render: function() {
 		return ( 
 			React.createElement("div", {className: "well", onClick: this.settingFishData}, 
-				React.createElement("h1", null, this.props.name)
+				React.createElement("h1", null, this.props.fish.name), 
+				React.createElement("p", null, "can i eat it? ", this.props.fish.edible + '')
 			)
 		)
 	}
@@ -36,7 +37,7 @@ var FishList = React.createClass({displayName: "FishList",
 	render: function() {
 		var self = this;
 		var fishes = this.props.fishes.map(function(item, idx){
-			return React.createElement(Fish, {name: item.name, key: idx, fishData: self.props.fishData})
+			return React.createElement(Fish, {fish: item, key: idx, fishData: self.props.fishData})
 		})
 		return ( 
 			React.createElement("div", null, 
@@ -124,7 +125,7 @@ var ShowFish = require('./ShowFish');
 
 var MyApp = React.createClass({displayName: "MyApp",
 	getInitialState:function() {
-		return {content:React.createElement(Splash, null), fishName:'Steve', fishes:[]}
+		return {content:React.createElement(Splash, null), fishData:{}, fishes:[]}
 	},
 	//setting click listeners for navbar
 	splashClick:function() {
@@ -150,7 +151,7 @@ var MyApp = React.createClass({displayName: "MyApp",
 		this.setState({content:React.createElement(FishList, {fishes: this.state.fishes, fishData: this.getFishData})})
 	},
 	newFishClick:function() {
-		this.setState({content:React.createElement(NewFish, null)})
+		this.setState({content:React.createElement(NewFish, {redirect: this.allFishClick})});	
 	}, 
 	loginClick:function() {
 		this.setState({content:React.createElement(Login, null)})
@@ -158,13 +159,13 @@ var MyApp = React.createClass({displayName: "MyApp",
 	signUpClick:function() {
 		this.setState({content:React.createElement(SignUp, null)})
 	},
-	getFishData:function(name){
-		this.state.fishName = name;
-		this.setState({fishName:name});
+	getFishData:function(fish){
+		this.state.fishData = fish;
+		this.setState({fishData:fish});
 		this.showFishClick();
 	},
 	showFishClick:function() {
-		this.setState({content:React.createElement(ShowFish, {fishName: this.state.fishName})})
+		this.setState({content:React.createElement(ShowFish, {fishData: this.state.fishData})})
 	},
 	render: function() {
 		return (
@@ -182,10 +183,46 @@ module.exports = MyApp;
 },{"./About":1,"./FishList":3,"./Footer":4,"./Header":5,"./Login":6,"./NewFish":8,"./ShowFish":9,"./SignUp":10,"./Splash":11,"react":170}],8:[function(require,module,exports){
 var React = require('react');
 var NewFish = React.createClass({displayName: "NewFish",
+	getInitialState: function(){
+		return{fishName:'rachel', fishPicture:'joe@joe.joe', edible:false}
+	},
+	createFish: function(e) {
+		var self = this;
+		e.preventDefault();
+		$.ajax({
+			url: 'http://localhost:3001/api/fish',
+			type: 'POST',
+			data: {name:self.state.fishName, picture:self.state.fishPicture, edible:self.state.edible},
+			success: function (data) {
+			}
+		})
+		this.props.redirect();
+	},
+	updateName: function(e) {
+		this.state.fishName = e.target.value;
+		this.setState({fishName:this.state.fishName})
+	},
+	updatePicture:function(e) {
+		this.state.fishPicture = e.target.value;
+		this.setState({fishPicture:this.state.fishPicture})
+	},
 	render: function() {
 		return ( 
 			React.createElement("div", null, 
-				React.createElement("h1", null, "This will be the NewFish page")
+				React.createElement("form", {onSubmit: this.createFish}, 
+					React.createElement("legend", null, "Form title"), 
+				
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "name"}, "name"), 
+						React.createElement("input", {type: "text", className: "form-control", id: "name", name: "name", onChange: this.updateName, placeholder: "Input field"})
+					), 
+
+					React.createElement("div", {className: "form-group"}, 
+						React.createElement("label", {htmlFor: "picture"}, "picture URL"), 
+						React.createElement("input", {type: "text", className: "form-control", id: "picture", name: "picture", onChange: this.updatePicture, placeholder: "Input field"})
+					), 
+					React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Create Fish!")
+				)
 			)
 		)
 	}
@@ -199,7 +236,8 @@ var ShowFish = React.createClass({displayName: "ShowFish",
 	render: function() {
 		return ( 
 			React.createElement("div", null, 
-				React.createElement("h1", null, this.props.fishName, " page")
+				React.createElement("h1", null, this.props.fishData.name, " page"), 
+				React.createElement("p", null, "edible? ", this.props.fishData.edible + '')
 			)
 		)
 	}

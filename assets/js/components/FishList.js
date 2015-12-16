@@ -4,7 +4,7 @@ var FishList = React.createClass({
 	render: function() {
 		var self = this;
 		var fishes = this.props.fishes.map(function(item, idx){
-			return <Fish name={item.name} key={idx} fishData={self.props.fishData}/>
+			return <Fish fish={item} key={idx} fishData={self.props.fishData}/>
 		})
 		return ( 
 			<div>

@@ -1,12 +1,13 @@
 var React = require('react');
 var Fish = React.createClass({
 	settingFishData:function() {
-		this.props.fishData(this.props.name);
+		this.props.fishData(this.props.fish);
 	},
 	render: function() {
 		return ( 
 			<div className='well' onClick={this.settingFishData}>
-				<h1>{this.props.name}</h1>
+				<h1>{this.props.fish.name}</h1>
+				<p>can i eat it? {this.props.fish.edible + ''}</p>
 			</div>
 		)
 	}

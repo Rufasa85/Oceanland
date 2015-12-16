@@ -12,7 +12,7 @@ router.route('/')
   .post(function(req, res) {
     Fish.create(req.body, function(err, fish) {
       if (err) return res.status(500).send(err);
-      res.send(fish);
+      // res.send(fish);
     });
   });
 
