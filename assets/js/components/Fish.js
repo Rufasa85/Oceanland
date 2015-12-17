@@ -28,8 +28,8 @@ var Fish = React.createClass({
 			return ( 
 				<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 					<div className='well' >
-						<h3 onClick={this.settingFishData}><a>{this.props.fish.name}</a></h3>
-						<img className='img img-responsive fish-list-img' src={this.props.fish.picture} />
+						<a href='#' onClick={this.settingFishData}><h3 className='text-center'>{this.props.fish.name}</h3></a>
+						<img className='img img-responsive fish-list-img center-block' src={this.props.fish.picture} />
 						<button type="button" className="btn" id='edit-btn' onClick={this.editBtnClick}>Edit</button>
 						<button type="button" className="btn" onClick={this.deleteBtnClick}>Delete</button>
 					</div>
@@ -40,8 +40,8 @@ var Fish = React.createClass({
 			return ( 
 				<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 					<div className='well'>
-						<h3 onClick={this.settingFishData}><a>{this.props.fish.name}</a></h3>
-						<img className='img img-responsive fish-list-img' src={this.props.fish.picture} />
+						<a href='#' onClick={this.settingFishData}><h3 className='text-center'>{this.props.fish.name}</h3></a>
+						<img className='img img-responsive fish-list-img center-block' src={this.props.fish.picture} />
 					</div>
 				</div>
 			)
