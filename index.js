@@ -47,4 +47,4 @@ app.post('/api/auth', function(req, res) {
 app.use('/api/users', require('./controllers/users'));
 app.use('/api/fish', require('./controllers/fishes'))
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT||3001)

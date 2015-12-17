@@ -7,7 +7,7 @@ var Fish = React.createClass({
 		var self = this;
 		console.log(self.props.fish);
 		$.ajax({
-			url: 'http://localhost:3001/api/fish/' + self.props.fish._id,
+			url: '/api/fish/' + self.props.fish._id,
 			headers: {Authorization: 'Bearer ' + self.props.token},
 			type: 'DELETE',
 			success:function() {
