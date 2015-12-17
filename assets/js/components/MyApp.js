@@ -26,7 +26,7 @@ var MyApp = React.createClass({
 		var self = this;
 		$.ajax({
 			type: "GET",
-			url: 'http://localhost:3001/api/fish', 
+			url: '/api/fish', 
 			success: function(data){
 				self.state.fishes = data;
 				self.setState({fishes:data, content:<FishList fishes={self.state.fishes} fishData={self.getFishData}/>, message:''})
@@ -40,7 +40,7 @@ var MyApp = React.createClass({
 			var myFishes = [];
 			$.ajax({
 				type: "GET",
-				url: 'http://localhost:3001/api/fish', 
+				url: '/api/fish', 
 				success: function(data){
 					console.log('data', data)
 					data.forEach(function(fish) {

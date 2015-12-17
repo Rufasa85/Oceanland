@@ -7,7 +7,7 @@ var Login = React.createClass({
 		var self = this;
 		e.preventDefault();
 		$.ajax({
-			url: 'http://localhost:3001/api/auth',
+			url: '/api/auth',
 			type: 'POST',
 			data: {email:self.state.email, password:self.state.password},
 			success: function (data) {

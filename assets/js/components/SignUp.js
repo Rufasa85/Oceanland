@@ -7,7 +7,7 @@ var SignUp = React.createClass({
 		var self = this;
 		e.preventDefault();
 		$.ajax({
-			url: 'http://localhost:3001/api/users',
+			url: '/api/users',
 			type: 'POST',
 			data: {email:self.state.email, password:self.state.password, username:self.state.username},
 			success: function (data) {

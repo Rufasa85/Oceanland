@@ -7,7 +7,7 @@ var EditFish = React.createClass({
 		var self = this;
 		e.preventDefault();
 		$.ajax({
-			url: 'http://localhost:3001/api/fish/' + self.props.fish._id,
+			url: '/api/fish/' + self.props.fish._id,
 			headers: {Authorization: 'Bearer ' + self.props.token},
 			type: 'PUT',
 			data: {name:self.state.fishName, picture:self.state.fishPicture, edible:self.state.edible},

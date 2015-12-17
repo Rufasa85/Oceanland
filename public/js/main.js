@@ -22,7 +22,7 @@ var EditFish = React.createClass({displayName: "EditFish",
 		var self = this;
 		e.preventDefault();
 		$.ajax({
-			url: 'http://localhost:3001/api/fish/' + self.props.fish._id,
+			url: '/api/fish/' + self.props.fish._id,
 			headers: {Authorization: 'Bearer ' + self.props.token},
 			type: 'PUT',
 			data: {name:self.state.fishName, picture:self.state.fishPicture, edible:self.state.edible},
@@ -73,7 +73,7 @@ var Fish = React.createClass({displayName: "Fish",
 		var self = this;
 		console.log(self.props.fish);
 		$.ajax({
-			url: 'http://localhost:3001/api/fish/' + self.props.fish._id,
+			url: '/api/fish/' + self.props.fish._id,
 			headers: {Authorization: 'Bearer ' + self.props.token},
 			type: 'DELETE',
 			success:function() {
@@ -204,7 +204,7 @@ var Login = React.createClass({displayName: "Login",
 		var self = this;
 		e.preventDefault();
 		$.ajax({
-			url: 'http://localhost:3001/api/auth',
+			url: '/api/auth',
 			type: 'POST',
 			data: {email:self.state.email, password:self.state.password},
 			success: function (data) {
@@ -274,7 +274,7 @@ var MyApp = React.createClass({displayName: "MyApp",
 		var self = this;
 		$.ajax({
 			type: "GET",
-			url: 'http://localhost:3001/api/fish', 
+			url: '/api/fish', 
 			success: function(data){
 				self.state.fishes = data;
 				self.setState({fishes:data, content:React.createElement(FishList, {fishes: self.state.fishes, fishData: self.getFishData}), message:''})
@@ -288,7 +288,7 @@ var MyApp = React.createClass({displayName: "MyApp",
 			var myFishes = [];
 			$.ajax({
 				type: "GET",
-				url: 'http://localhost:3001/api/fish', 
+				url: '/api/fish', 
 				success: function(data){
 					console.log('data', data)
 					data.forEach(function(fish) {
@@ -403,7 +403,7 @@ var NewFish = React.createClass({displayName: "NewFish",
 		var self = this;
 		e.preventDefault();
 		$.ajax({
-			url: 'http://localhost:3001/api/fish',
+			url: '/api/fish',
 			headers: {Authorization: 'Bearer ' + self.props.token},
 			type: 'POST',
 			data: {name:self.state.fishName, picture:self.state.fishPicture, creator:self.props.userId, edible:self.state.edible},
@@ -470,7 +470,7 @@ var SignUp = React.createClass({displayName: "SignUp",
 		var self = this;
 		e.preventDefault();
 		$.ajax({
-			url: 'http://localhost:3001/api/users',
+			url: '/api/users',
 			type: 'POST',
 			data: {email:self.state.email, password:self.state.password, username:self.state.username},
 			success: function (data) {
