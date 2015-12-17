@@ -108,8 +108,8 @@ var Fish = React.createClass({displayName: "Fish",
 			return ( 
 				React.createElement("div", {className: "col-xs-3 col-sm-3 col-md-3 col-lg-3"}, 
 					React.createElement("div", {className: "well"}, 
-						React.createElement("h3", {onClick: this.settingFishData}, React.createElement("a", null, this.props.fish.name)), 
-						React.createElement("img", {className: "img img-responsive fish-list-img", src: this.props.fish.picture}), 
+						React.createElement("a", {href: "#", onClick: this.settingFishData}, React.createElement("h3", {className: "text-center"}, this.props.fish.name)), 
+						React.createElement("img", {className: "img img-responsive fish-list-img center-block", src: this.props.fish.picture}), 
 						React.createElement("button", {type: "button", className: "btn", id: "edit-btn", onClick: this.editBtnClick}, "Edit"), 
 						React.createElement("button", {type: "button", className: "btn", onClick: this.deleteBtnClick}, "Delete")
 					)
@@ -120,8 +120,8 @@ var Fish = React.createClass({displayName: "Fish",
 			return ( 
 				React.createElement("div", {className: "col-xs-3 col-sm-3 col-md-3 col-lg-3"}, 
 					React.createElement("div", {className: "well"}, 
-						React.createElement("h3", {onClick: this.settingFishData}, React.createElement("a", null, this.props.fish.name)), 
-						React.createElement("img", {className: "img img-responsive fish-list-img", src: this.props.fish.picture})
+						React.createElement("a", {href: "#", onClick: this.settingFishData}, React.createElement("h3", {className: "text-center"}, this.props.fish.name)), 
+						React.createElement("img", {className: "img img-responsive fish-list-img center-block", src: this.props.fish.picture})
 					)
 				)
 			)
@@ -497,9 +497,8 @@ var ShowFish = React.createClass({displayName: "ShowFish",
 	render: function() {
 		return ( 
 			React.createElement("div", null, 
-				React.createElement("h1", null, this.props.fishData.name, " page"), 
-				React.createElement("img", {src: this.props.fishData.picture}), 
-				React.createElement("p", null, "edible? ", this.props.fishData.edible + '')
+				React.createElement("h1", {className: "text-center"}, this.props.fishData.name), 
+				React.createElement("img", {className: "img img-responsive big-img center-block", src: this.props.fishData.picture})
 			)
 		)
 	}

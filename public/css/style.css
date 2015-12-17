@@ -21,8 +21,16 @@ body {
 	border-color:salmon;
 }
 
+a {
+	color:salmon;
+}
+
 .btn:hover {
 	background-color: pink;
+}
+
+a:hover, a:visited {
+	color:#03C9A9;
 }
 
 .form-control, .form-control:focus {
@@ -69,6 +77,12 @@ body {
 	height: 200px;
 	border-top-left-radius: 50%;
 	border-top-right-radius: 50%;
+}
+
+.big-img {
+	width:50%;
+	height: auto;
+
 }
 
 .footer {
