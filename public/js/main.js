@@ -225,18 +225,32 @@ var Login = React.createClass({displayName: "Login",
 		return ( 
 			React.createElement("div", null, 
 				React.createElement("form", {onSubmit: this.afterLogin}, 
-					React.createElement("legend", null, "Form title"), 
-				
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "email"}, "email"), 
-						React.createElement("input", {type: "text", className: "form-control", id: "email", name: "email", placeholder: "Input field", onChange: this.updateEmail})
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 
+							React.createElement("h1", null, "Login")
+						)
 					), 
-
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "password"}, "password"), 
-						React.createElement("input", {type: "password", className: "form-control", id: "password", name: "password", placeholder: "Input field", onChange: this.updatePassword})
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 								
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "email"}, "Email"), 
+								React.createElement("input", {type: "text", className: "form-control", id: "email", name: "email", placeholder: "ex: joe@joe.joe", onChange: this.updateEmail})
+							)
+						)						
 					), 
-					React.createElement("button", {type: "submit", className: "btn"}, "Login!")
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 	
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "password"}, "password"), 
+								React.createElement("input", {type: "password", className: "form-control", id: "password", name: "password", placeholder: "min. 8 characters", onChange: this.updatePassword})
+							)
+						)
+					), 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 
+							React.createElement("button", {type: "submit", className: "btn"}, "Login!")
+						)
+					)
 				)
 			)
 		)
@@ -502,22 +516,40 @@ var SignUp = React.createClass({displayName: "SignUp",
 		return ( 
 			React.createElement("div", null, 
 				React.createElement("form", {onSubmit: this.afterSignup}, 
-					React.createElement("legend", null, "Form title"), 
-				
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "email"}, "email"), 
-						React.createElement("input", {type: "text", className: "form-control", id: "email", name: "email", placeholder: "Input field", onChange: this.updateEmail})
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 
+							React.createElement("h1", null, "Signup")
+						)
 					), 
-
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "password"}, "password"), 
-						React.createElement("input", {type: "password", className: "form-control", id: "password", name: "password", placeholder: "Input field", onChange: this.updatePassword})
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 								
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "email"}, "Email"), 
+								React.createElement("input", {type: "text", className: "form-control", id: "email", name: "email", placeholder: "ex: joe@joe.joe", onChange: this.updateEmail})
+							)
+						)						
 					), 
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "username"}, "username"), 
-						React.createElement("input", {type: "username", className: "form-control", id: "username", name: "username", placeholder: "Input field", onChange: this.updateUsername})
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 	
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "password"}, "password"), 
+								React.createElement("input", {type: "password", className: "form-control", id: "password", name: "password", placeholder: "min. 8 characters", onChange: this.updatePassword})
+							)
+						)
 					), 
-					React.createElement("button", {type: "submit", className: "btn"}, "Sign Up!")
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 	
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "username"}, "username"), 
+								React.createElement("input", {type: "text", className: "form-control", id: "username", name: "username", placeholder: "Stay classy! >:(", onChange: this.updateUsername})
+							)
+						)
+					), 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4"}, 
+							React.createElement("button", {type: "submit", className: "btn"}, "SignUp!")
+						)
+					)
 				)
 			)
 		)
