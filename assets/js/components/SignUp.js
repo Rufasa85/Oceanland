@@ -52,7 +52,7 @@ var SignUp = React.createClass({
 						<label htmlFor="username">username</label>
 						<input type="username" className="form-control" id="username" name='username' placeholder="Input field" onChange={this.updateUsername}/>
 					</div>
-					<button type="submit" className="btn btn-primary">Sign Up!</button>
+					<button type="submit" className="btn">Sign Up!</button>
 				</form>
 			</div>
 		)

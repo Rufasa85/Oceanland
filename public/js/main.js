@@ -54,7 +54,7 @@ var EditFish = React.createClass({displayName: "EditFish",
 						React.createElement("label", {htmlFor: "picture"}, "picture URL"), 
 						React.createElement("input", {type: "text", className: "form-control", id: "picture", name: "picture", onChange: this.updatePicture, placeholder: "Input field", defaultValue: this.props.fish.picture})
 					), 
-					React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Update Fish!")
+					React.createElement("button", {type: "submit", className: "btn"}, "Update Fish!")
 				)
 			)
 		)
@@ -95,8 +95,8 @@ var Fish = React.createClass({displayName: "Fish",
 					React.createElement("h1", {onClick: this.settingFishData}, this.props.fish.name), 
 					React.createElement("p", null, "can i eat it? ", edibility), 
 					React.createElement("img", {src: this.props.fish.picture}), 
-					React.createElement("button", {type: "button", className: "btn btn-info", onClick: this.editBtnClick}, "Edit"), 
-					React.createElement("button", {type: "button", className: "btn btn-danger", onClick: this.deleteBtnClick}, "Delete")
+					React.createElement("button", {type: "button", className: "btn", onClick: this.editBtnClick}, "Edit"), 
+					React.createElement("button", {type: "button", className: "btn", onClick: this.deleteBtnClick}, "Delete")
 				)
 			)
 		}
@@ -236,7 +236,7 @@ var Login = React.createClass({displayName: "Login",
 						React.createElement("label", {htmlFor: "password"}, "password"), 
 						React.createElement("input", {type: "password", className: "form-control", id: "password", name: "password", placeholder: "Input field", onChange: this.updatePassword})
 					), 
-					React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Login!")
+					React.createElement("button", {type: "submit", className: "btn"}, "Login!")
 				)
 			)
 		)
@@ -381,10 +381,12 @@ var MyApp = React.createClass({displayName: "MyApp",
 	},
 	render: function() {
 		return (
-			React.createElement("div", {className: "container"}, 
+			React.createElement("div", null, 
 				React.createElement(Header, {about: this.aboutClick, allFish: this.allFishClick, splash: this.splashClick, myFish: this.myFishClick, newFish: this.newFishClick, login: this.loginClick, logout: this.logoutClick, signUp: this.signUpClick}), 
-				this.state.message, 
-				this.state.content, 
+				React.createElement("div", {className: "container"}, 
+						this.state.message, 
+						this.state.content
+				), 
 				React.createElement(Footer, null)
 			)
 		)
@@ -515,7 +517,7 @@ var SignUp = React.createClass({displayName: "SignUp",
 						React.createElement("label", {htmlFor: "username"}, "username"), 
 						React.createElement("input", {type: "username", className: "form-control", id: "username", name: "username", placeholder: "Input field", onChange: this.updateUsername})
 					), 
-					React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Sign Up!")
+					React.createElement("button", {type: "submit", className: "btn"}, "Sign Up!")
 				)
 			)
 		)

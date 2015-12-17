@@ -133,10 +133,12 @@ var MyApp = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className='container'>
+			<div>
 				<Header about={this.aboutClick} allFish={this.allFishClick} splash={this.splashClick} myFish={this.myFishClick} newFish={this.newFishClick} login={this.loginClick} logout = {this.logoutClick} signUp={this.signUpClick} />
-				{this.state.message}
-				{this.state.content}
+				<div className='container'>
+						{this.state.message}
+						{this.state.content}
+				</div>
 				<Footer/>
 			</div>
 		)
