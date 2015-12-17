@@ -66,7 +66,7 @@ var EditFish = React.createClass({displayName: "EditFish",
 					), 
 					React.createElement("div", {className: "row"}, 
 						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
-							React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Create Fish!")
+							React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Update Fish!")
 						)
 					)
 				)
@@ -99,27 +99,30 @@ var Fish = React.createClass({displayName: "Fish",
 		this.props.editBtnCallback(this.props.fish);
 	},
 	render: function() {
-		var edibility = 'no';
-		if (this.props.fish.edible){
-			edibility = 'yes';
-		};
+		//checking for edibility, will add back in if i can figure out incorporating radio buttons
+		// var edibility = 'no';
+		// if (this.props.fish.edible){
+		// 	edibility = 'yes';
+		// };
 		if (this.props.canEdit) {
 			return ( 
-				React.createElement("div", {className: "well"}, 
-					React.createElement("h1", {onClick: this.settingFishData}, this.props.fish.name), 
-					React.createElement("p", null, "can i eat it? ", edibility), 
-					React.createElement("img", {src: this.props.fish.picture}), 
-					React.createElement("button", {type: "button", className: "btn", onClick: this.editBtnClick}, "Edit"), 
-					React.createElement("button", {type: "button", className: "btn", onClick: this.deleteBtnClick}, "Delete")
+				React.createElement("div", {className: "col-xs-3 col-sm-3 col-md-3 col-lg-3"}, 
+					React.createElement("div", {className: "well"}, 
+						React.createElement("h3", {onClick: this.settingFishData}, React.createElement("a", null, this.props.fish.name)), 
+						React.createElement("img", {className: "img img-responsive fish-list-img", src: this.props.fish.picture}), 
+						React.createElement("button", {type: "button", className: "btn", id: "edit-btn", onClick: this.editBtnClick}, "Edit"), 
+						React.createElement("button", {type: "button", className: "btn", onClick: this.deleteBtnClick}, "Delete")
+					)
 				)
 			)
 		}
 		else {
 			return ( 
-				React.createElement("div", {className: "well", onClick: this.settingFishData}, 
-					React.createElement("h1", null, this.props.fish.name), 
-					React.createElement("p", null, "can i eat it? ", edibility), 
-					React.createElement("img", {src: this.props.fish.picture})
+				React.createElement("div", {className: "col-xs-3 col-sm-3 col-md-3 col-lg-3"}, 
+					React.createElement("div", {className: "well"}, 
+						React.createElement("h3", {onClick: this.settingFishData}, React.createElement("a", null, this.props.fish.name)), 
+						React.createElement("img", {className: "img img-responsive fish-list-img", src: this.props.fish.picture})
+					)
 				)
 			)
 		}
