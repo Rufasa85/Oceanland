@@ -51,7 +51,7 @@ var EditFish = React.createClass({
 					</div>
 					<div className="row">
 						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
-							<button type="submit" className="btn btn-primary">Create Fish!</button>
+							<button type="submit" className="btn btn-primary">Update Fish!</button>
 						</div>
 					</div>
 				</form>

@@ -3,13 +3,20 @@ body {
 	background-color: #03C9A9;
 }
 
+.container {
+	margin-bottom:20px;
+}
+
 .navbar, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .footer {
 	background: #E4F1FE;
 	border-color:#E4F1FE;
+	border-radius:0px;
 }
 
 .btn {
 	border-radius: 0px;
+	margin:10px;
+	margin-bottom:0px;
 	background-color:salmon;
 	border-color:salmon;
 }
@@ -28,22 +35,40 @@ body {
 
 }
 
-
 /*stackoverflow solution for changing placeholder colors*/
 
 .form-control::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #E4F1FE;
 }
+
 .form-control:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
    color:    #E4F1FE;
    opacity:  1;
 }
+
 .form-control::-moz-placeholder { /* Mozilla Firefox 19+ */
    color:    #E4F1FE;
    opacity:  1;
 }
+
 .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
    color:    #E4F1FE;
+}
+
+.well {
+	border-radius:0px;
+	background-color:#E4F1FE;
+}
+
+#edit-btn {
+	margin-left:0px;
+}
+
+.fish-list-img {
+	width:200px;
+	height: 200px;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
 }
 
 .footer {

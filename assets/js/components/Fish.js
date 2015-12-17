@@ -19,27 +19,30 @@ var Fish = React.createClass({
 		this.props.editBtnCallback(this.props.fish);
 	},
 	render: function() {
-		var edibility = 'no';
-		if (this.props.fish.edible){
-			edibility = 'yes';
-		};
+		//checking for edibility, will add back in if i can figure out incorporating radio buttons
+		// var edibility = 'no';
+		// if (this.props.fish.edible){
+		// 	edibility = 'yes';
+		// };
 		if (this.props.canEdit) {
 			return ( 
-				<div className='well' >
-					<h1 onClick={this.settingFishData}>{this.props.fish.name}</h1>
-					<p>can i eat it? {edibility}</p>
-					<img src={this.props.fish.picture} />
-					<button type="button" className="btn" onClick={this.editBtnClick}>Edit</button>
-					<button type="button" className="btn" onClick={this.deleteBtnClick}>Delete</button>
+				<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<div className='well' >
+						<h3 onClick={this.settingFishData}><a>{this.props.fish.name}</a></h3>
+						<img className='img img-responsive fish-list-img' src={this.props.fish.picture} />
+						<button type="button" className="btn" id='edit-btn' onClick={this.editBtnClick}>Edit</button>
+						<button type="button" className="btn" onClick={this.deleteBtnClick}>Delete</button>
+					</div>
 				</div>
 			)
 		}
 		else {
 			return ( 
-				<div className='well' onClick={this.settingFishData}>
-					<h1>{this.props.fish.name}</h1>
-					<p>can i eat it? {edibility}</p>
-					<img src={this.props.fish.picture} />
+				<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<div className='well'>
+						<h3 onClick={this.settingFishData}><a>{this.props.fish.name}</a></h3>
+						<img className='img img-responsive fish-list-img' src={this.props.fish.picture} />
+					</div>
 				</div>
 			)
 		}
