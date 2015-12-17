@@ -381,10 +381,12 @@ var MyApp = React.createClass({displayName: "MyApp",
 	},
 	render: function() {
 		return (
-			React.createElement("div", {className: "container"}, 
+			React.createElement("div", null, 
 				React.createElement(Header, {about: this.aboutClick, allFish: this.allFishClick, splash: this.splashClick, myFish: this.myFishClick, newFish: this.newFishClick, login: this.loginClick, logout: this.logoutClick, signUp: this.signUpClick}), 
-				this.state.message, 
-				this.state.content, 
+				React.createElement("div", {className: "container"}, 
+						this.state.message, 
+						this.state.content
+				), 
 				React.createElement(Footer, null)
 			)
 		)
