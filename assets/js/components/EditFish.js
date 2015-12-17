@@ -39,7 +39,7 @@ var EditFish = React.createClass({
 						<label htmlFor="picture">picture URL</label>
 						<input type="text" className="form-control" id="picture" name='picture' onChange={this.updatePicture} placeholder="Input field" defaultValue={this.props.fish.picture}/>
 					</div>
-					<button type="submit" className="btn btn-primary">Update Fish!</button>
+					<button type="submit" className="btn">Update Fish!</button>
 				</form>
 			</div>
 		)

@@ -39,7 +39,7 @@ var Login = React.createClass({
 						<label htmlFor="password">password</label>
 						<input type="password" className="form-control" id="password" name='password' placeholder="Input field" onChange={this.updatePassword}/>
 					</div>
-					<button type="submit" className="btn btn-primary">Login!</button>
+					<button type="submit" className="btn">Login!</button>
 				</form>
 			</div>
 		)
