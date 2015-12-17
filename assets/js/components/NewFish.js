@@ -27,19 +27,33 @@ var NewFish = React.createClass({
 	render: function() {
 		return ( 
 			<div >
-				<form  onSubmit={this.createFish}>
-					<legend>Form title</legend>
-				
-					<div className="form-group">
-						<label htmlFor="name">name</label>
-						<input type="text" className="form-control" id="name" name='name' onChange={this.updateName} placeholder="Input field"/>
+				<form onSubmit={this.createFish}>
+					<div className="row">
+						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+							<h1>New Fish</h1>
+						</div>
 					</div>
-
-					<div className="form-group">
-						<label htmlFor="picture">picture URL</label>
-						<input type="text" className="form-control" id="picture" name='picture' onChange={this.updatePicture} placeholder="Input field"/>
+					<div className="row">
+						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+							<div className="form-group">
+								<label htmlFor="name">name</label>
+								<input type="text" className="form-control" id="name" name='name' onChange={this.updateName} placeholder="Common or scientific. Whichever"/>
+							</div>
+						</div>
 					</div>
-					<button type="submit" className="btn btn-primary">Create Fish!</button>
+					<div className="row">
+						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+							<div className="form-group">
+								<label htmlFor="picture">picture URL</label>
+								<input type="text" className="form-control" id="picture" name='picture' onChange={this.updatePicture} placeholder="ex: http://www.google.com/"/>
+							</div>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+							<button type="submit" className="btn btn-primary">Create Fish!</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		)

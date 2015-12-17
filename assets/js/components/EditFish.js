@@ -28,18 +28,32 @@ var EditFish = React.createClass({
 		return ( 
 			<div >
 				<form onSubmit={this.updateFish}>
-					<legend>Form title</legend>
-				
-					<div className="form-group">
-						<label htmlFor="name">name</label>
-						<input type="text" className="form-control" id="name" name='name' onChange={this.updateName} defaultValue={this.props.fish.name}/>
+				<div className="row">
+						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+							<h1>Edit Fish</h1>
+						</div>
 					</div>
-
-					<div className="form-group">
-						<label htmlFor="picture">picture URL</label>
-						<input type="text" className="form-control" id="picture" name='picture' onChange={this.updatePicture} placeholder="Input field" defaultValue={this.props.fish.picture}/>
+					<div className="row">
+						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+							<div className="form-group">
+								<label htmlFor="name">name</label>
+								<input type="text" className="form-control" id="name" name='name' onChange={this.updateName} defaultValue={this.props.fish.name}/>
+							</div>
+						</div>
 					</div>
-					<button type="submit" className="btn">Update Fish!</button>
+					<div className="row">
+						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+							<div className="form-group">
+								<label htmlFor="picture">picture URL</label>
+								<input type="text" className="form-control" id="picture" name='picture' onChange={this.updatePicture} defaultValue={this.props.fish.picture} />
+							</div>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+							<button type="submit" className="btn btn-primary">Create Fish!</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		)

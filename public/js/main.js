@@ -43,18 +43,32 @@ var EditFish = React.createClass({displayName: "EditFish",
 		return ( 
 			React.createElement("div", null, 
 				React.createElement("form", {onSubmit: this.updateFish}, 
-					React.createElement("legend", null, "Form title"), 
-				
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "name"}, "name"), 
-						React.createElement("input", {type: "text", className: "form-control", id: "name", name: "name", onChange: this.updateName, defaultValue: this.props.fish.name})
+				React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
+							React.createElement("h1", null, "Edit Fish")
+						)
 					), 
-
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "picture"}, "picture URL"), 
-						React.createElement("input", {type: "text", className: "form-control", id: "picture", name: "picture", onChange: this.updatePicture, placeholder: "Input field", defaultValue: this.props.fish.picture})
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "name"}, "name"), 
+								React.createElement("input", {type: "text", className: "form-control", id: "name", name: "name", onChange: this.updateName, defaultValue: this.props.fish.name})
+							)
+						)
 					), 
-					React.createElement("button", {type: "submit", className: "btn"}, "Update Fish!")
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "picture"}, "picture URL"), 
+								React.createElement("input", {type: "text", className: "form-control", id: "picture", name: "picture", onChange: this.updatePicture, defaultValue: this.props.fish.picture})
+							)
+						)
+					), 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
+							React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Create Fish!")
+						)
+					)
 				)
 			)
 		)
@@ -440,18 +454,32 @@ var NewFish = React.createClass({displayName: "NewFish",
 		return ( 
 			React.createElement("div", null, 
 				React.createElement("form", {onSubmit: this.createFish}, 
-					React.createElement("legend", null, "Form title"), 
-				
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "name"}, "name"), 
-						React.createElement("input", {type: "text", className: "form-control", id: "name", name: "name", onChange: this.updateName, placeholder: "Input field"})
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
+							React.createElement("h1", null, "New Fish")
+						)
 					), 
-
-					React.createElement("div", {className: "form-group"}, 
-						React.createElement("label", {htmlFor: "picture"}, "picture URL"), 
-						React.createElement("input", {type: "text", className: "form-control", id: "picture", name: "picture", onChange: this.updatePicture, placeholder: "Input field"})
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "name"}, "name"), 
+								React.createElement("input", {type: "text", className: "form-control", id: "name", name: "name", onChange: this.updateName, placeholder: "Common or scientific. Whichever"})
+							)
+						)
 					), 
-					React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Create Fish!")
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
+							React.createElement("div", {className: "form-group"}, 
+								React.createElement("label", {htmlFor: "picture"}, "picture URL"), 
+								React.createElement("input", {type: "text", className: "form-control", id: "picture", name: "picture", onChange: this.updatePicture, placeholder: "ex: http://www.google.com/"})
+							)
+						)
+					), 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3"}, 
+							React.createElement("button", {type: "submit", className: "btn btn-primary"}, "Create Fish!")
+						)
+					)
 				)
 			)
 		)
