@@ -18,6 +18,34 @@ body {
 	background-color: pink;
 }
 
+.form-control, .form-control:focus {
+	border:0px;
+	border-radius:0px;
+	background-color:#03C9A9;
+	border-bottom: 1px solid #E4F1FE; 
+	box-shadow: none;
+	font-size:18px;
+
+}
+
+
+/*stackoverflow solution for changing placeholder colors*/
+
+.form-control::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #E4F1FE;
+}
+.form-control:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #E4F1FE;
+   opacity:  1;
+}
+.form-control::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #E4F1FE;
+   opacity:  1;
+}
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #E4F1FE;
+}
+
 .footer {
 	position: fixed;
 	bottom:0px;
