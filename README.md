@@ -35,5 +35,8 @@ Initially I scoped out a significantly more complex application, but after hitti
 * Add in an aquarium model, where users can add fish from the database to their tanks. Tanks would be displayed with animated images of selected fish inside them.    
 * Abstraction of code into more of a Flux-style architecture
 
+##Screenshot
+![Splash Page](https://github.com/Rufasa85/Oceanland/blob/master/screenshots/splash.png "Desktop screenshot")
+
 ## Contributors
 * Joe Rehfuss
