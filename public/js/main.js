@@ -593,8 +593,21 @@ var React = require('react');
 var Splash = React.createClass({displayName: "Splash",
 	render: function() {
 		return ( 
-			React.createElement("div", null, 
-				React.createElement("h1", null, "This will be the Splash page")
+			React.createElement("div", {id: "fullpage"}, 
+			    React.createElement("div", {id: "fullpage-first", className: "section"}, 
+			    	React.createElement("h1", {className: "text-center big-header"}, " Welcome to OceanLand!*")
+			    ), 
+			    React.createElement("div", {id: "fullpage-second", className: "section"}, 
+			    	React.createElement("h1", {className: "text-center big-header"}, "What We Are All About"), 
+			    	React.createElement("p", null, React.createElement("strong", null, "Kogi PBR&B franzen iPhone, shoreditch church-key kitsch YOLO tofu echo park paleo. Cardigan semiotics viral, migas blue bottle distillery 8-bit lo-fi etsy lomo. Keytar listicle marfa, leggings williamsburg trust fund vegan poutine craft beer mixtape yr distillery tofu chartreuse intelligentsia. Direct trade blog sartorial drinking vinegar, DIY health goth hoodie pitchfork whatever cray aesthetic keytar. Swag beard forage, shoreditch chartreuse lo-fi intelligentsia meggings sustainable irony squid neutra. Locavore taxidermy pour-over, schlitz synth lumbersexual truffaut fanny pack pabst narwhal waistcoat viral twee direct trade. Sriracha cornhole green juice, marfa venmo etsy dreamcatcher cronut authentic synth narwhal."))
+			    ), 
+			    React.createElement("div", {id: "fullpage-third", className: "section"}, 
+			    	React.createElement("h1", {className: "text-center big-header"}, "Our App"), 
+			    	React.createElement("p", null, React.createElement("strong", null, "Kogi PBR&B franzen iPhone, shoreditch church-key kitsch YOLO tofu echo park paleo. Cardigan semiotics viral, migas blue bottle distillery 8-bit lo-fi etsy lomo. Keytar listicle marfa, leggings williamsburg trust fund vegan poutine craft beer mixtape yr distillery tofu chartreuse intelligentsia. Direct trade blog sartorial drinking vinegar, DIY health goth hoodie pitchfork whatever cray aesthetic keytar. Swag beard forage, shoreditch chartreuse lo-fi intelligentsia meggings sustainable irony squid neutra. Locavore taxidermy pour-over, schlitz synth lumbersexual truffaut fanny pack pabst narwhal waistcoat viral twee direct trade. Sriracha cornhole green juice, marfa venmo etsy dreamcatcher cronut authentic synth narwhal."))
+			    ), 
+			    React.createElement("div", {id: "fullpage-fourth", className: "section"}, 
+			    	React.createElement("h1", {className: "text-center big-header"}, "Ready? Lets get started! Click 'Signup' to start using our app!")
+			    )
 			)
 		)
 	}
@@ -608,6 +621,9 @@ var ReactDOM = require('react-dom');
 var MyApp = require('./components/MyApp');
 
 ReactDOM.render(React.createElement(MyApp, null), document.getElementById('container'));
+$(document).ready(function() {
+    $('#fullpage').fullpage();
+});
 
 },{"./components/MyApp":8,"react":171,"react-dom":15}],14:[function(require,module,exports){
 // shim for using process in browser
