@@ -11,7 +11,6 @@ var Login = React.createClass({
 			type: 'POST',
 			data: {email:self.state.email, password:self.state.password},
 			success: function (data) {
-				console.log(data);
 				self.props.authenticate(data);
 			}
 		})

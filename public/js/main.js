@@ -139,19 +139,22 @@ var FishList = React.createClass({displayName: "FishList",
 	render: function() {
 		var self = this;
 		var fishes;
+		var header;
 		if (this.props.canEdit) {
-			console.log('From fishList:'+this.props.canEdit)
+			header = 'My fish';
 			fishes = this.props.fishes.map(function(item, idx){
 				return React.createElement(Fish, {fish: item, key: idx, fishData: self.props.fishData, canEdit: "true", deleteBtnCallback: self.props.deleteBtnCallback, editBtnCallback: self.props.editBtnCallback, token: self.props.token})
 			})
 		}
 		else {
+			header='All the fish!';
 			fishes = this.props.fishes.map(function(item, idx){
 				return React.createElement(Fish, {fish: item, key: idx, fishData: self.props.fishData})
 			})
 		}
 		return ( 
 			React.createElement("div", null, 
+				React.createElement("h1", null, header), 
 				fishes
 			)
 		)
@@ -226,7 +229,6 @@ var Login = React.createClass({displayName: "Login",
 			type: 'POST',
 			data: {email:self.state.email, password:self.state.password},
 			success: function (data) {
-				console.log(data);
 				self.props.authenticate(data);
 			}
 		})
@@ -322,7 +324,6 @@ var MyApp = React.createClass({displayName: "MyApp",
 				type: "GET",
 				url: '/api/fish', 
 				success: function(data){
-					console.log('data', data)
 					data.forEach(function(fish) {
 						if (fish.creator === self.state.userId) {
 							myFishes.push(fish);
@@ -521,7 +522,6 @@ var SignUp = React.createClass({displayName: "SignUp",
 			type: 'POST',
 			data: {email:self.state.email, password:self.state.password, username:self.state.username},
 			success: function (data) {
-				console.log(data);
 				if (data.error) {
 					self.props.error();
 				}

@@ -26,12 +26,7 @@ app.use(function (err, req, res, next) {
     res.status(401).send({message: 'You need an authorization token to view this information.'})
   }
 });
-
-app.get('/api/haha', function(req, res) {
-	res.send('linkin')
-});
 	
-
 app.post('/api/auth', function(req, res) {
   User.findOne({email: req.body.email}, function(err, user) {
     if (err || !user) return res.send({message: 'User not found'});
