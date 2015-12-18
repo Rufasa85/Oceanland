@@ -16,7 +16,7 @@ var MyApp = React.createClass({
 	},
 	//setting click listeners for navbar
 	splashClick:function() {
-		this.setState({content:<Splash/>, message:''})
+		this.setState({content:<Splash/>, message:''});
 	},
 	aboutClick:function() {
 		this.setState({content:<About/>, message:''})
@@ -136,8 +136,8 @@ var MyApp = React.createClass({
 			<div>
 				<Header about={this.aboutClick} allFish={this.allFishClick} splash={this.splashClick} myFish={this.myFishClick} newFish={this.newFishClick} login={this.loginClick} logout = {this.logoutClick} signUp={this.signUpClick} />
 				<div className='container'>
-						{this.state.message}
-						{this.state.content}
+					{this.state.message}
+					{this.state.content}
 				</div>
 				<Footer/>
 			</div>

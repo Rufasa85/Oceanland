@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-	margin-bottom:20px;
+	margin-bottom:50px;
 }
 
 .navbar, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .footer {
@@ -20,6 +20,7 @@ body {
 	color: #E4F1FE;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	font-weight: bold;
+	min-height: 500px;
 }
 
 #fullpage-first {
