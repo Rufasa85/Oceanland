@@ -38,5 +38,9 @@ Initially I scoped out a significantly more complex application, but after hitti
 ##Screenshot
 ![Splash Page](https://github.com/Rufasa85/Oceanland/blob/master/screenshots/splash.png "Desktop screenshot")
 
+##User stories
+*User 1: Casually interested in fish.  Wants to browse images of fish and see what kind of mysterious creatures live under the sea.
+*User 2: Serious fish enthusiast.  Wants to be able to add fish to the database. Doesnt want other users to be able to edit or delete the fish they have created.  
+
 ## Contributors
 * Joe Rehfuss
