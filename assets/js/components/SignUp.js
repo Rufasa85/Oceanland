@@ -11,7 +11,6 @@ var SignUp = React.createClass({
 			type: 'POST',
 			data: {email:self.state.email, password:self.state.password, username:self.state.username},
 			success: function (data) {
-				console.log(data);
 				if (data.error) {
 					self.props.error();
 				}

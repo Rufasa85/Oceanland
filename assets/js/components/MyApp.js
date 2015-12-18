@@ -42,7 +42,6 @@ var MyApp = React.createClass({
 				type: "GET",
 				url: '/api/fish', 
 				success: function(data){
-					console.log('data', data)
 					data.forEach(function(fish) {
 						if (fish.creator === self.state.userId) {
 							myFishes.push(fish);
