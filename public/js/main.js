@@ -166,7 +166,7 @@ var Footer = React.createClass({displayName: "Footer",
 	render: function() {
 		return ( 
 			React.createElement("div", {className: "footer"}, 
-				React.createElement("p", null, " ©2015 Joe Rehfuss ")
+				React.createElement("h4", {className: "text-center"}, " ©2015 Joe Rehfuss ", React.createElement("span", null, React.createElement("a", {href: "https://www.linkedin.com/in/joerehfuss"}, React.createElement("i", {className: "fa fa-linkedin-square", target: "_blank"}))), React.createElement("span", null, React.createElement("a", {href: "https://github.com/Rufasa85", target: "_blank"}, React.createElement("i", {className: "fa fa-github"}))))
 			)
 		)
 	}
