@@ -416,7 +416,7 @@ var MyApp = React.createClass({displayName: "MyApp",
 			React.createElement("div", null, 
 				React.createElement(Header, {about: this.aboutClick, allFish: this.allFishClick, splash: this.splashClick, myFish: this.myFishClick, newFish: this.newFishClick, login: this.loginClick, logout: this.logoutClick, signUp: this.signUpClick}), 
 				React.createElement("div", {className: "container"}, 
-					this.state.message, 
+					React.createElement("p", {className: "text-center message"}, this.state.message), 
 					this.state.content
 				), 
 				React.createElement(Footer, null)

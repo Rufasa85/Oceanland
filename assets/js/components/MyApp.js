@@ -136,7 +136,7 @@ var MyApp = React.createClass({
 			<div>
 				<Header about={this.aboutClick} allFish={this.allFishClick} splash={this.splashClick} myFish={this.myFishClick} newFish={this.newFishClick} login={this.loginClick} logout = {this.logoutClick} signUp={this.signUpClick} />
 				<div className='container'>
-					{this.state.message}
+					<p className='text-center message'>{this.state.message}</p>
 					{this.state.content}
 				</div>
 				<Footer/>
