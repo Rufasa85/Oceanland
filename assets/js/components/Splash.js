@@ -8,14 +8,26 @@ var Splash = React.createClass({
 			    </div>
 			    <div id='fullpage-second' className="section">
 			    	<h1 className='text-center big-header'>What We Are All About</h1>
-			    	<p><strong>Kogi PBR&B franzen iPhone, shoreditch church-key kitsch YOLO tofu echo park paleo. Cardigan semiotics viral, migas blue bottle distillery 8-bit lo-fi etsy lomo. Keytar listicle marfa, leggings williamsburg trust fund vegan poutine craft beer mixtape yr distillery tofu chartreuse intelligentsia. Direct trade blog sartorial drinking vinegar, DIY health goth hoodie pitchfork whatever cray aesthetic keytar. Swag beard forage, shoreditch chartreuse lo-fi intelligentsia meggings sustainable irony squid neutra. Locavore taxidermy pour-over, schlitz synth lumbersexual truffaut fanny pack pabst narwhal waistcoat viral twee direct trade. Sriracha cornhole green juice, marfa venmo etsy dreamcatcher cronut authentic synth narwhal.</strong></p>
+			    	<div className="row">
+			    		<div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1">
+			    			<h3><strong>Here at OceanLand, we strive to provide the highest quality marine life park experience for both our customers and our animals.  Visitors delight in our wide variety of exhibits,  and our animals are subject to world-leading care and attention. The Earth's surface is 70% water, and here at OceanLand we believe humans can learn a great deal from their aquatic cousins.  OceanLand: The pinnacle of marine life parks.</strong></h3>
+			    		</div>
+			    	</div>
 			    </div>
 			    <div id='fullpage-third' className="section">
 			    	<h1 className='text-center big-header'>Our App</h1>
-			    	<p><strong>Kogi PBR&B franzen iPhone, shoreditch church-key kitsch YOLO tofu echo park paleo. Cardigan semiotics viral, migas blue bottle distillery 8-bit lo-fi etsy lomo. Keytar listicle marfa, leggings williamsburg trust fund vegan poutine craft beer mixtape yr distillery tofu chartreuse intelligentsia. Direct trade blog sartorial drinking vinegar, DIY health goth hoodie pitchfork whatever cray aesthetic keytar. Swag beard forage, shoreditch chartreuse lo-fi intelligentsia meggings sustainable irony squid neutra. Locavore taxidermy pour-over, schlitz synth lumbersexual truffaut fanny pack pabst narwhal waistcoat viral twee direct trade. Sriracha cornhole green juice, marfa venmo etsy dreamcatcher cronut authentic synth narwhal.</strong></p>
+			    	<div className="row">
+			    		<div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1">
+			    			<h3><strong>coming soon</strong></h3>
+			    		</div>
+			    	</div>
 			    </div>
 			    <div id='fullpage-fourth' className="section">
-			    	<h1 className='text-center big-header'>Ready? Lets get started! Click 'Signup' to start using our app!</h1>
+				    <div className="row">
+				    	<div className="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2">
+				    		<h1 className='text-center big-header'>Ready? Lets get started! Use the navigation bar to have a look around!</h1>
+				    	</div>
+				    </div>
 			    </div>
 			</div>
 		)

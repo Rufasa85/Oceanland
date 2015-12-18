@@ -295,7 +295,7 @@ var MyApp = React.createClass({displayName: "MyApp",
 	},
 	//setting click listeners for navbar
 	splashClick:function() {
-		this.setState({content:React.createElement(Splash, null), message:''})
+		this.setState({content:React.createElement(Splash, null), message:''});
 	},
 	aboutClick:function() {
 		this.setState({content:React.createElement(About, null), message:''})
@@ -415,8 +415,8 @@ var MyApp = React.createClass({displayName: "MyApp",
 			React.createElement("div", null, 
 				React.createElement(Header, {about: this.aboutClick, allFish: this.allFishClick, splash: this.splashClick, myFish: this.myFishClick, newFish: this.newFishClick, login: this.loginClick, logout: this.logoutClick, signUp: this.signUpClick}), 
 				React.createElement("div", {className: "container"}, 
-						this.state.message, 
-						this.state.content
+					this.state.message, 
+					this.state.content
 				), 
 				React.createElement(Footer, null)
 			)
@@ -599,14 +599,26 @@ var Splash = React.createClass({displayName: "Splash",
 			    ), 
 			    React.createElement("div", {id: "fullpage-second", className: "section"}, 
 			    	React.createElement("h1", {className: "text-center big-header"}, "What We Are All About"), 
-			    	React.createElement("p", null, React.createElement("strong", null, "Kogi PBR&B franzen iPhone, shoreditch church-key kitsch YOLO tofu echo park paleo. Cardigan semiotics viral, migas blue bottle distillery 8-bit lo-fi etsy lomo. Keytar listicle marfa, leggings williamsburg trust fund vegan poutine craft beer mixtape yr distillery tofu chartreuse intelligentsia. Direct trade blog sartorial drinking vinegar, DIY health goth hoodie pitchfork whatever cray aesthetic keytar. Swag beard forage, shoreditch chartreuse lo-fi intelligentsia meggings sustainable irony squid neutra. Locavore taxidermy pour-over, schlitz synth lumbersexual truffaut fanny pack pabst narwhal waistcoat viral twee direct trade. Sriracha cornhole green juice, marfa venmo etsy dreamcatcher cronut authentic synth narwhal."))
+			    	React.createElement("div", {className: "row"}, 
+			    		React.createElement("div", {className: "col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1"}, 
+			    			React.createElement("h3", null, React.createElement("strong", null, "Here at OceanLand, we strive to provide the highest quality marine life park experience for both our customers and our animals.  Visitors delight in our wide variety of exhibits,  and our animals are subject to world-leading care and attention. The Earth's surface is 70% water, and here at OceanLand we believe humans can learn a great deal from their aquatic cousins.  OceanLand: The pinnacle of marine life parks."))
+			    		)
+			    	)
 			    ), 
 			    React.createElement("div", {id: "fullpage-third", className: "section"}, 
 			    	React.createElement("h1", {className: "text-center big-header"}, "Our App"), 
-			    	React.createElement("p", null, React.createElement("strong", null, "Kogi PBR&B franzen iPhone, shoreditch church-key kitsch YOLO tofu echo park paleo. Cardigan semiotics viral, migas blue bottle distillery 8-bit lo-fi etsy lomo. Keytar listicle marfa, leggings williamsburg trust fund vegan poutine craft beer mixtape yr distillery tofu chartreuse intelligentsia. Direct trade blog sartorial drinking vinegar, DIY health goth hoodie pitchfork whatever cray aesthetic keytar. Swag beard forage, shoreditch chartreuse lo-fi intelligentsia meggings sustainable irony squid neutra. Locavore taxidermy pour-over, schlitz synth lumbersexual truffaut fanny pack pabst narwhal waistcoat viral twee direct trade. Sriracha cornhole green juice, marfa venmo etsy dreamcatcher cronut authentic synth narwhal."))
+			    	React.createElement("div", {className: "row"}, 
+			    		React.createElement("div", {className: "col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1"}, 
+			    			React.createElement("h3", null, React.createElement("strong", null, "coming soon"))
+			    		)
+			    	)
 			    ), 
 			    React.createElement("div", {id: "fullpage-fourth", className: "section"}, 
-			    	React.createElement("h1", {className: "text-center big-header"}, "Ready? Lets get started! Click 'Signup' to start using our app!")
+				    React.createElement("div", {className: "row"}, 
+				    	React.createElement("div", {className: "col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2"}, 
+				    		React.createElement("h1", {className: "text-center big-header"}, "Ready? Lets get started! Use the navigation bar to have a look around!")
+				    	)
+				    )
 			    )
 			)
 		)
@@ -621,9 +633,6 @@ var ReactDOM = require('react-dom');
 var MyApp = require('./components/MyApp');
 
 ReactDOM.render(React.createElement(MyApp, null), document.getElementById('container'));
-$(document).ready(function() {
-    $('#fullpage').fullpage();
-});
 
 },{"./components/MyApp":8,"react":171,"react-dom":15}],14:[function(require,module,exports){
 // shim for using process in browser
