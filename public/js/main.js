@@ -4,7 +4,8 @@ var About = React.createClass({displayName: "About",
 	render: function() {
 		return ( 
 			React.createElement("div", null, 
-				React.createElement("h1", null, "This will be the about page")
+				React.createElement("h1", null, "About"), 
+				React.createElement("h3", null, "OceanLand is a parody SeaWorld app built in ReactJs, NodeJS, Express, and MongoDB by me, Joe Rehfuss, in one week as a class project for a General Assembly Web Development Immersive class.  Read more about OceanLand on the ", React.createElement("strong", null, React.createElement("a", {href: "https://github.com/Rufasa85/Oceanland", target: "_blank"}, "GitHub page")), " for this project.")
 			)
 		)
 	}
