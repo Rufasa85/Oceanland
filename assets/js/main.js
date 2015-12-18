@@ -3,3 +3,6 @@ var ReactDOM = require('react-dom');
 var MyApp = require('./components/MyApp');
 
 ReactDOM.render(<MyApp />, document.getElementById('container'));
+$(document).ready(function() {
+    $('#fullpage').fullpage();
+});

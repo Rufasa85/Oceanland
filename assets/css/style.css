@@ -11,6 +11,35 @@ body {
 	background: #E4F1FE;
 	border-color:#E4F1FE;
 	border-radius:0px;
+	z-index: 1;
+}
+
+.section {
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	color: #E4F1FE;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	font-weight: bold;
+}
+
+#fullpage-first {
+	background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/9b/2009-Seaworld-Shamu.jpg);
+}
+
+#fullpage-second {
+	background-image:url(http://o.aolcdn.com/dims-shared/dims3/GLOB/crop/3299x2194+0+138/resize/640x426!/format/jpg/quality/85/http://o.aolcdn.com/hss/storage/midas/96000171064e3595f6472323f8c1082f/201921005/h_02160299.jpg);
+}
+
+#fullpage-third {
+	background-image: url(http://i1-news.softpedia-static.com/images/news2/The-Humble-Moon-Jellyfish-Is-the-World-s-Most-Efficient-Swimmer-389338-2.jpg);
+}
+
+#fullpage-fourth {
+	background-image:url(https://upload.wikimedia.org/wikipedia/commons/7/77/Puffer_Fish_DSC01257.JPG);
+}
+
+.big-header {
+	font-size:48px;
 }
 
 .btn {
