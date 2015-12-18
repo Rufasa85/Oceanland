@@ -47,20 +47,22 @@ body {
 	border-radius: 0px;
 	margin:10px;
 	margin-bottom:0px;
-	background-color:salmon;
-	border-color:salmon;
+	background-color:#96281B;
+	border-color:#96281B;
+	color: #E4F1FE;
 }
 
-a {
-	color:salmon;
+a, a:visited {
+	color:#96281B;
 }
 
 .btn:hover {
-	background-color: pink;
+	background-color: #CF000F;
+	color: #E4F1FE;
 }
 
-a:hover, a:visited {
-	color:#03C9A9;
+a:hover {
+	color:#CF000F;
 }
 
 .form-control, .form-control:focus {
