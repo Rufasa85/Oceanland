@@ -595,7 +595,7 @@ var Splash = React.createClass({displayName: "Splash",
 		return ( 
 			React.createElement("div", {id: "fullpage"}, 
 			    React.createElement("div", {id: "fullpage-first", className: "section"}, 
-			    	React.createElement("h1", {className: "text-center big-header"}, " Welcome to OceanLand!*")
+			    	React.createElement("h1", {className: "text-center big-header"}, " Welcome to OceanLand!")
 			    ), 
 			    React.createElement("div", {id: "fullpage-second", className: "section"}, 
 			    	React.createElement("h1", {className: "text-center big-header"}, "What We Are All About"), 
@@ -609,7 +609,7 @@ var Splash = React.createClass({displayName: "Splash",
 			    	React.createElement("h1", {className: "text-center big-header"}, "Our App"), 
 			    	React.createElement("div", {className: "row"}, 
 			    		React.createElement("div", {className: "col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1"}, 
-			    			React.createElement("h3", null, React.createElement("strong", null, "coming soon"))
+			    			React.createElement("h3", null, React.createElement("strong", null, "Interested in visiting our park but can't make the trip? Our app is here to save the day! Browse pictures of various animals you can find around the park.  Create an account and you can add animals and pictures of your own. Try it today!"))
 			    		)
 			    	)
 			    ), 
